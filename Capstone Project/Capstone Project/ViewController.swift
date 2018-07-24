@@ -19,16 +19,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var table: UITableView!
     var pickerData: [String] = [String]()
     var pickedState: String = ""
+    var parksUsed: [Int] = [Int]()
     var nationalParks: [NationalPark] = [
         NationalPark(name: "Yosemite National Park", state: "California"),
-        NationalPark(name: "Sequoia National Park", state: "California")
+        NationalPark(name: "Sequoia National Park", state: "California"),
+        NationalPark(name: "Grand Canyon National Park", state: "Arizona")
     ]
-    var selectedNationalPark: String = ""
-    var selectedState: String = ""
-    
-    @IBAction func searchParks(_ sender: Any) {
-        table.reloadData()
-    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -44,31 +40,50 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickedState = pickerData[row]
+        parksUsed = [Int]()
         table.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nationalParks.count
+        var parkNum: Int = 0
+        
+        for number in 0...(nationalParks.count - 1) {
+            if(nationalParks[number].state == pickedState) {
+                parkNum += 1
+            }
+        }
+        return parkNum
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "nationalParkCell", for: indexPath)
-        if(pickedState == nationalParks[indexPath.row].state){
-            cell.textLabel?.text = nationalParks[indexPath.row].name
-        } else {
-            cell.textLabel?.text = ""
+        
+        cell.textLabel?.text = ""
+        for number in 0...(nationalParks.count - 1) {
+            if(cell.textLabel?.text == "") {
+                if(nationalParks[number].state == pickedState) {
+                    if(parksUsed.count > 0) {
+                        for num in 0...(parksUsed.count - 1) {
+                            if(parksUsed[num] != number) {
+                                parksUsed.append(number)
+                                cell.textLabel?.text = nationalParks[number].name
+                            }
+                        }
+                    } else {
+                        parksUsed.append(number)
+                        cell.textLabel?.text = nationalParks[number].name
+                    }
+                }
+            }
         }
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedNationalPark = nationalParks[indexPath.row].name
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? InformationViewController {
-            vc.nationalPark = selectedNationalPark
+        if let vc = segue.destination as? InformationViewController,
+            let indexNum = table.indexPathForSelectedRow?.row {
+            vc.nationalPark = nationalParks[parksUsed[indexNum]].name
         }
     }
     
@@ -78,7 +93,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.picker.delegate = self
         self.picker.dataSource = self
         
-        pickerData = ["Alaska", "California"]
+        pickerData = ["Alaska", "Arizona", "California"]
     }
 
     override func didReceiveMemoryWarning() {
