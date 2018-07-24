@@ -11,15 +11,12 @@ import UIKit
 class PlanViewController: UIViewController {
 
     var nationalPark: String = ""
-    var state: String = ""
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddPlanViewController {
             vc.nationalPark = nationalPark
-            vc.state = state
         } else if let vc = segue.destination as? ExtraInfoViewController {
             vc.nationalPark = nationalPark
-            vc.state = state
         }
     }
     

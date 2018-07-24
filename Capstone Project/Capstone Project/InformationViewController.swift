@@ -19,22 +19,19 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     var nationalPark: String = ""
-    var state = ""
-    var nationalParks: [NationalPark] = [
+/*    var nationalParks: [NationalPark] = [
         NationalPark(name: "Yosemite National Park",
                      picture: <#T##UIImage#>,
                      info: "Yo"),
         NationalPark(name: "Sequioa National Park",
                      picture: <#T##UIImage#>,
                      info: "Hey")
-    ]
-    
+    ] */
+
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ExtraInfoViewController {
             vc.nationalPark = nationalPark
-            vc.state = state
-        } else if let vc = segue.destination as? ViewController {
-            vc.selectedState = state
         }
     }
     
@@ -42,12 +39,12 @@ class InformationViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        for number in 1...nationalParks.count {
+/*        for number in 1...nationalParks.count {
             if(nationalParks[number].name == nationalPark) {
                 imageView.image = nationalParks[number].picture
                 textView.text = nationalParks[number].info
             }
-        }
+        } */
     }
 
     override func didReceiveMemoryWarning() {
