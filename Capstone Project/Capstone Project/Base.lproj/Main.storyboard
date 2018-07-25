@@ -160,6 +160,9 @@
                                 <color key="backgroundColor" red="0.92508724620000005" green="0.92508724620000005" blue="0.92508724620000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="17"/>
                                 <state key="normal" title="Call"/>
+                                <connections>
+                                    <action selector="callNumber:" destination="3k1-AV-haq" eventType="touchUpInside" id="RTB-Ap-4F6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilL-mB-t91">
                                 <rect key="frame" x="16" y="286" width="160" height="160"/>
@@ -200,6 +203,9 @@
                                 <color key="backgroundColor" red="0.9250872461928934" green="0.9250872461928934" blue="0.9250872461928934" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="17"/>
                                 <state key="normal" title="Go to the Website"/>
+                                <connections>
+                                    <action selector="goWebsite:" destination="3k1-AV-haq" eventType="touchUpInside" id="QmQ-Ze-Yc3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97945726524535448" blue="0.85719357446579947" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -417,8 +423,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="7rf-iG-O1q"/>
-        <segue reference="4Qp-jA-0EA"/>
+        <segue reference="K1q-zA-AcT"/>
         <segue reference="Qk2-ei-r1l"/>
-        <segue reference="dKM-hw-yX7"/>
+        <segue reference="THx-FK-XgL"/>
     </inferredMetricsTieBreakers>
 </document>

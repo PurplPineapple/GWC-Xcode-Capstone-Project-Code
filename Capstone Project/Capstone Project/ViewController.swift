@@ -21,9 +21,42 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var pickedState: String = ""
     var parksUsed: [Int] = [Int]()
     var nationalParks: [NationalPark] = [
+        NationalPark(name: "Little River Canyon National Preserve", state: "Alabama"),
+        NationalPark(name: "Denali National Park", state: "Alaska"),
+        NationalPark(name: "Grand Canyon National Park", state: "Arizona"),
         NationalPark(name: "Yosemite National Park", state: "California"),
         NationalPark(name: "Sequoia National Park", state: "California"),
-        NationalPark(name: "Grand Canyon National Park", state: "Arizona")
+        NationalPark(name: "Redwood National and State Parks", state: "California"),
+        NationalPark(name: "Rocky Mountain National Park", state: "Colorado"),
+        NationalPark(name: "Great Sand Dunes National Park", state: "Colorado"),
+        NationalPark(name: "Dry Tortugas National Park", state: "Florida"),
+        NationalPark(name: "Chattahoochee River National Recreation Area", state: "Georgia"),
+        NationalPark(name: "Kalaupapa National Historical Park", state: "Hawaii"),
+        NationalPark(name: "Craters of the Moon National Monument and Preserve", state: "Idaho"),
+        NationalPark(name: "Indiana Dunes National Lakeshore", state: "Indiana"),
+        NationalPark(name: "Poverty Point National Monument", state: "Louisiana"),
+        NationalPark(name: "Acadia National Park", state: "Maine"),
+        NationalPark(name: "Sleeping Bear Dunes National Lakeshore", state: "Michigan"),
+        NationalPark(name: "Voyageurs National Park", state: "Minnesota"),
+        NationalPark(name: "Glacier National Park", state: "Montana"),
+        NationalPark(name: "Bighorn Canyon National Recreation Area", state: "Montana"),
+        NationalPark(name: "Agata Fossil Beds National Monument", state: "Nebraska"),
+        NationalPark(name: "Great Basin National Park", state: "Nevada"),
+        NationalPark(name: "Carlsbad Caverns National Park", state: "New Mexico"),
+        NationalPark(name: "Cape Hatteras National Seashore", state: "North Carolina"),
+        NationalPark(name: "Cuyahoga Valley National Park", state: "Ohio"),
+        NationalPark(name: "Crater Lake National Park", state: "Oregon"),
+        NationalPark(name: "Congaree National Park", state: "South Carolina"),
+        NationalPark(name: "Big Bend National Park", state: "Texas"),
+        NationalPark(name: "Zion National Park", state: "Utah"),
+        NationalPark(name: "Arches National Park", state: "Utah"),
+        NationalPark(name: "Bryce Canyon National Park", state: "Utah"),
+        NationalPark(name: "Shenandoah National Park", state: "Virginia"),
+        NationalPark(name: "Olympic National Park", state: "Washington"),
+        NationalPark(name: "Mount Rainier National Park", state: "Washington"),
+        NationalPark(name: "Gauley River National Recreation Area", state: "West Virgina"),
+        NationalPark(name: "Apostle Islands National Lakeshore", state: "Wisconsin"),
+        NationalPark(name: "Grand Teton National Park", state: "Wyoming")
     ]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -63,17 +96,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             if(cell.textLabel?.text == "") {
                 if(nationalParks[number].state == pickedState) {
                     if(parksUsed.count > 0) {
+                        var flag: Bool = true
                         for num in 0...(parksUsed.count - 1) {
-                            if(parksUsed[num] != number) {
-                                parksUsed.append(number)
-                                cell.textLabel?.text = nationalParks[number].name
+                            if(parksUsed[num] == number) {
+                                flag = false
                             }
+                        }
+                        if(flag){
+                            parksUsed.append(number)
+                            cell.textLabel?.text = nationalParks[number].name
                         }
                     } else {
                         parksUsed.append(number)
                         cell.textLabel?.text = nationalParks[number].name
                     }
                 }
+            } else {
+                break
             }
         }
         
@@ -93,7 +132,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.picker.delegate = self
         self.picker.dataSource = self
         
-        pickerData = ["Alaska", "Arizona", "California"]
+        pickerData = ["Alabama", "Alaska", "Arizona", "California", "Colorado", "Florida", "Georgia", "Hawaii", "Idaho", "Indiana", "Louisiana", "Maine", "Michigan", "Minnesota", "Montana", "Nebraska", "Nevada", "New Mexico", "North Carolina", "Ohio", "Oregon", "South Carolina", "Texas", "Utah", "Virginia", "Washington", "West Virgina", "Wisconsin", "Wyoming"]
     }
 
     override func didReceiveMemoryWarning() {
